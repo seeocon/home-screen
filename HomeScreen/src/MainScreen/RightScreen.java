@@ -3,18 +3,18 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package homescreen;
+package MainScreen;
 
 /**
  *
  * @author 068684570
  */
-public class LeftScreen extends javax.swing.JPanel {
+public class RightScreen extends javax.swing.JPanel {
 
     /**
-     * Creates new form LeftScreen
+     * Creates new form RightScreen
      */
-    public LeftScreen() {
+    public RightScreen() {
         initComponents();
     }
 
