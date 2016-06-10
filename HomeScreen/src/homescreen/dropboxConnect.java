@@ -88,11 +88,10 @@ public class dropboxConnect {
      }                                                                       
     
      */
-    
-    
     /**
-     * Downloads a file from an online directory. Preferably Dropbox.
-     * @param sourceUrl URL of file to be downloaded.
+     * Downloads a file from an online directory, preferably Dropbox. This is a
+     * simple method, try the commented method above if this fails.
+     * @param sourceUrl Direct URL of file to be downloaded.
      * @param targetDirectory Directory the file will be downloaded to
      * @return The location of the file.
      */
