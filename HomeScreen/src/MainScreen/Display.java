@@ -27,9 +27,6 @@ public class Display extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        videoDisplay1 = new YoutubeDisplayer.VideoDisplay();
-        videoDisplay2 = new YoutubeDisplayer.VideoDisplay();
-
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         setExtendedState(MAXIMIZED_BOTH);
@@ -85,7 +82,5 @@ public class Display extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private YoutubeDisplayer.VideoDisplay videoDisplay1;
-    private YoutubeDisplayer.VideoDisplay videoDisplay2;
     // End of variables declaration//GEN-END:variables
 }
