@@ -5,12 +5,18 @@
  */
 package MainScreen;
 
+
+import java.io.File;
+
+
 /**
  *
  * @author Paul
  */
 public class Background extends javax.swing.JPanel {
 
+    File b1 = new File("C:\\Users\\Paul\\Desktop\\memes\\ey.txt");
+    
     /**
      * Creates new form Background
      */
