@@ -78,6 +78,7 @@ public class Interface extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
 
         UserName.setText("UserName");
 
@@ -309,6 +310,7 @@ public class Interface extends javax.swing.JFrame {
         } else {
             displayPopup("Login unrecognized.");
         }
+        this.setVisible(false);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
