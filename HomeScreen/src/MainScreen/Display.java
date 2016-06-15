@@ -5,7 +5,18 @@
  */
 package MainScreen;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.Timer;
 import login.Interface;
+import twitter4j.Status;
+import twitter4j.Twitter;
+import twitter4j.TwitterException;
+import twitter4j.TwitterFactory;
+import twitter4j.conf.ConfigurationBuilder;
 
 /**
  *
@@ -13,11 +24,31 @@ import login.Interface;
  */
 public class Display extends javax.swing.JFrame {
 
+    Timer t;
+
     /**
      * Creates new form Display
      */
     public Display() {
         initComponents();
+        try {
+            displayTweets();
+        } catch (TwitterException ex) {
+            Logger.getLogger(Display.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        t = new Timer(100, new TimerListener());
+    }
+
+    private class TimerListener implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            try {
+                displayTweets();
+            } catch (TwitterException ex) {
+                Logger.getLogger(Display.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
     }
 
     /**
@@ -31,6 +62,12 @@ public class Display extends javax.swing.JFrame {
 
         background2 = new MainScreen.Background();
         jButton1 = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        tvNews1 = new javax.swing.JLabel();
+        tvNews2 = new javax.swing.JLabel();
+        tvNews3 = new javax.swing.JLabel();
+        tvNews4 = new javax.swing.JLabel();
+        tvNews5 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(0, 0, 0));
@@ -55,21 +92,70 @@ public class Display extends javax.swing.JFrame {
             }
         });
 
+        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(240, 240, 240));
+        jLabel1.setText("@nhstvnews");
+
+        tvNews1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        tvNews1.setForeground(new java.awt.Color(240, 240, 240));
+        tvNews1.setToolTipText("");
+
+        tvNews2.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        tvNews2.setForeground(new java.awt.Color(240, 240, 240));
+        tvNews2.setToolTipText("");
+
+        tvNews3.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        tvNews3.setForeground(new java.awt.Color(240, 240, 240));
+        tvNews3.setToolTipText("");
+
+        tvNews4.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        tvNews4.setForeground(new java.awt.Color(240, 240, 240));
+        tvNews4.setToolTipText("");
+
+        tvNews5.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        tvNews5.setForeground(new java.awt.Color(240, 240, 240));
+        tvNews5.setToolTipText("");
+
         javax.swing.GroupLayout background2Layout = new javax.swing.GroupLayout(background2);
         background2.setLayout(background2Layout);
         background2Layout.setHorizontalGroup(
             background2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(background2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(1864, Short.MAX_VALUE))
+                .addGroup(background2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(background2Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(background2Layout.createSequentialGroup()
+                        .addGap(104, 104, 104)
+                        .addGroup(background2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(background2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(tvNews3, javax.swing.GroupLayout.PREFERRED_SIZE, 464, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(tvNews5, javax.swing.GroupLayout.PREFERRED_SIZE, 464, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(tvNews4, javax.swing.GroupLayout.PREFERRED_SIZE, 464, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(background2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 464, Short.MAX_VALUE)
+                                .addComponent(tvNews1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(tvNews2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
+                .addContainerGap(1352, Short.MAX_VALUE))
         );
         background2Layout.setVerticalGroup(
             background2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(background2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jButton1)
-                .addContainerGap(1046, Short.MAX_VALUE))
+                .addGap(69, 69, 69)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(tvNews1, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(tvNews2, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(tvNews3, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(tvNews4, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(tvNews5, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(130, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -89,6 +175,39 @@ public class Display extends javax.swing.JFrame {
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
         new Interface().setVisible(true);
     }//GEN-LAST:event_jButton1MouseClicked
+
+    public void displayTweets() throws TwitterException {
+        ConfigurationBuilder cb = new ConfigurationBuilder();
+        cb.setOAuthConsumerKey("3I1RTnsA7JhWgnbomQuYrEhmP");
+        cb.setOAuthConsumerSecret("tNvpM739osUCRtTjDT47Yifbc4OB5mvxXWsKLld4lGRvn1X4SU");
+        cb.setOAuthAccessToken("743138963767107584-3MZxk0Et5tmBhDXHWAppmHlyiPO5OW4");
+        cb.setOAuthAccessTokenSecret("QaQPydUPRdH8SicXDVoIU13dSq5NKOxcloJlX1ZYYkrCO");
+
+        Twitter twitter = new TwitterFactory(cb.build()).getInstance();
+        List<Status> statuses = twitter.getHomeTimeline();
+        System.out.println("Showing home timeline.");
+
+        // shows the first newest
+        tvNews1.setText("@" + statuses.get(0).getUser().getScreenName() + ": "
+                + statuses.get(0).getText());
+        if (statuses.size() > 1) {
+            tvNews2.setText("@" + statuses.get(1).getUser().getScreenName() + ": "
+                    + statuses.get(1).getText());
+        }
+        if (statuses.size() > 2) {
+            tvNews3.setText("@" + statuses.get(2).getUser().getScreenName() + ": "
+                    + statuses.get(2).getText());
+        }
+        if (statuses.size() > 3) {
+            tvNews4.setText("@" + statuses.get(3).getUser().getScreenName() + ": "
+                    + statuses.get(3).getText());
+        }
+        if (statuses.size() > 4) {
+            tvNews5.setText("@" + statuses.get(4).getUser().getScreenName() + ": "
+                    + statuses.get(4).getText());
+        }
+
+    }
 
     /**
      * @param args the command line arguments
@@ -128,5 +247,11 @@ public class Display extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private MainScreen.Background background2;
     private javax.swing.JButton jButton1;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel tvNews1;
+    private javax.swing.JLabel tvNews2;
+    private javax.swing.JLabel tvNews3;
+    private javax.swing.JLabel tvNews4;
+    private javax.swing.JLabel tvNews5;
     // End of variables declaration//GEN-END:variables
 }
