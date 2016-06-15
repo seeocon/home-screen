@@ -25,12 +25,25 @@ import twitter4j.conf.ConfigurationBuilder;
 public class Display extends javax.swing.JFrame {
 
     Timer t;
+    ConfigurationBuilder cb = new ConfigurationBuilder();
+    Twitter twitter;
+    List<Status> statuses;
 
     /**
      * Creates new form Display
      */
-    public Display() {
+    public Display(){
         initComponents();
+        cb.setOAuthConsumerKey("3I1RTnsA7JhWgnbomQuYrEhmP");
+        cb.setOAuthConsumerSecret("tNvpM739osUCRtTjDT47Yifbc4OB5mvxXWsKLld4lGRvn1X4SU");
+        cb.setOAuthAccessToken("743138963767107584-3MZxk0Et5tmBhDXHWAppmHlyiPO5OW4");
+        cb.setOAuthAccessTokenSecret("QaQPydUPRdH8SicXDVoIU13dSq5NKOxcloJlX1ZYYkrCO");
+        twitter = new TwitterFactory(cb.build()).getInstance();
+        try {
+            statuses = twitter.getHomeTimeline();
+        } catch (TwitterException ex) {
+            Logger.getLogger(Display.class.getName()).log(Level.SEVERE, null, ex);
+        }
         try {
             displayTweets();
         } catch (TwitterException ex) {
@@ -177,14 +190,6 @@ public class Display extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1MouseClicked
 
     public void displayTweets() throws TwitterException {
-        ConfigurationBuilder cb = new ConfigurationBuilder();
-        cb.setOAuthConsumerKey("3I1RTnsA7JhWgnbomQuYrEhmP");
-        cb.setOAuthConsumerSecret("tNvpM739osUCRtTjDT47Yifbc4OB5mvxXWsKLld4lGRvn1X4SU");
-        cb.setOAuthAccessToken("743138963767107584-3MZxk0Et5tmBhDXHWAppmHlyiPO5OW4");
-        cb.setOAuthAccessTokenSecret("QaQPydUPRdH8SicXDVoIU13dSq5NKOxcloJlX1ZYYkrCO");
-
-        Twitter twitter = new TwitterFactory(cb.build()).getInstance();
-        List<Status> statuses = twitter.getHomeTimeline();
         System.out.println("Showing home timeline.");
 
         // shows the first newest
