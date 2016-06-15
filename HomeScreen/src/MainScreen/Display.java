@@ -5,6 +5,7 @@
  */
 package MainScreen;
 
+import static MainScreen.Weather.getWeather;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
@@ -17,6 +18,8 @@ import twitter4j.Twitter;
 import twitter4j.TwitterException;
 import twitter4j.TwitterFactory;
 import twitter4j.conf.ConfigurationBuilder;
+import weather.CantFindWeatherException;
+import java.util.Calendar;
 
 /**
  *
@@ -28,12 +31,15 @@ public class Display extends javax.swing.JFrame {
     ConfigurationBuilder cb = new ConfigurationBuilder();
     Twitter twitter;
     List<Status> statuses;
+    int day;
+    Calendar c;
 
     /**
      * Creates new form Display
      */
     public Display(){
         initComponents();
+        //TWITTER INIT
         cb.setOAuthConsumerKey("3I1RTnsA7JhWgnbomQuYrEhmP");
         cb.setOAuthConsumerSecret("tNvpM739osUCRtTjDT47Yifbc4OB5mvxXWsKLld4lGRvn1X4SU");
         cb.setOAuthAccessToken("743138963767107584-3MZxk0Et5tmBhDXHWAppmHlyiPO5OW4");
@@ -50,6 +56,10 @@ public class Display extends javax.swing.JFrame {
             Logger.getLogger(Display.class.getName()).log(Level.SEVERE, null, ex);
         }
         t = new Timer(100, new TimerListener());
+        //WEATHER INIT
+        c = Calendar.getInstance();                                 // Creates a calander object
+        day = c.get(Calendar.DAY_OF_WEEK);  
+        displayWeather();
     }
 
     private class TimerListener implements ActionListener {
@@ -81,6 +91,10 @@ public class Display extends javax.swing.JFrame {
         tvNews3 = new javax.swing.JLabel();
         tvNews4 = new javax.swing.JLabel();
         tvNews5 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        tempDisplay = new javax.swing.JLabel();
+        tempDisplay1 = new javax.swing.JLabel();
+        tempDisplay2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(0, 0, 0));
@@ -129,6 +143,22 @@ public class Display extends javax.swing.JFrame {
         tvNews5.setForeground(new java.awt.Color(240, 240, 240));
         tvNews5.setToolTipText("");
 
+        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(240, 240, 240));
+        jLabel2.setText("weather");
+
+        tempDisplay.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        tempDisplay.setForeground(new java.awt.Color(240, 240, 240));
+        tempDisplay.setText("temp");
+
+        tempDisplay1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        tempDisplay1.setForeground(new java.awt.Color(240, 240, 240));
+        tempDisplay1.setText("temp");
+
+        tempDisplay2.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        tempDisplay2.setForeground(new java.awt.Color(240, 240, 240));
+        tempDisplay2.setText("temp");
+
         javax.swing.GroupLayout background2Layout = new javax.swing.GroupLayout(background2);
         background2.setLayout(background2Layout);
         background2Layout.setHorizontalGroup(
@@ -145,11 +175,18 @@ public class Display extends javax.swing.JFrame {
                                 .addComponent(tvNews3, javax.swing.GroupLayout.PREFERRED_SIZE, 464, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(tvNews5, javax.swing.GroupLayout.PREFERRED_SIZE, 464, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(tvNews4, javax.swing.GroupLayout.PREFERRED_SIZE, 464, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(background2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 464, Short.MAX_VALUE)
-                                .addComponent(tvNews1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(tvNews2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
-                .addContainerGap(1352, Short.MAX_VALUE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, background2Layout.createSequentialGroup()
+                                .addGroup(background2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 464, Short.MAX_VALUE)
+                                    .addComponent(tvNews1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(tvNews2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 965, Short.MAX_VALUE)
+                                .addGroup(background2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 137, Short.MAX_VALUE)
+                                    .addComponent(tempDisplay, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(tempDisplay1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(tempDisplay2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))))
+                .addGap(250, 250, 250))
         );
         background2Layout.setVerticalGroup(
             background2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -157,18 +194,29 @@ public class Display extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jButton1)
                 .addGap(69, 69, 69)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(tvNews1, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(tvNews2, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(tvNews3, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(tvNews4, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(tvNews5, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(130, Short.MAX_VALUE))
+                .addGroup(background2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(background2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(background2Layout.createSequentialGroup()
+                        .addGap(75, 75, 75)
+                        .addComponent(tvNews1, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(tvNews2, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(tvNews3, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(tvNews4, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(tvNews5, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(background2Layout.createSequentialGroup()
+                        .addGap(16, 16, 16)
+                        .addComponent(tempDisplay1, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(tempDisplay2, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(tempDisplay, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(61, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -211,7 +259,24 @@ public class Display extends javax.swing.JFrame {
             tvNews5.setText("@" + statuses.get(4).getUser().getScreenName() + ": "
                     + statuses.get(4).getText());
         }
-
+    }
+    
+    public void displayWeather(){
+        try {
+            tempDisplay.setText("Current Tempurature: " + Integer.toString(Weather.getWeather("Toronto").getItem().getCondition().getTemp()));
+        } catch (CantFindWeatherException ex) {
+            Logger.getLogger(Display.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        try {
+            tempDisplay1.setText("High: " + Integer.toString(getWeather("Toronto").getItem().getForecasts().get(day).getHigh()));
+        } catch (CantFindWeatherException ex) {
+            Logger.getLogger(Display.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        try {
+            tempDisplay2.setText("Low: " + Integer.toString(getWeather("Toronto").getItem().getForecasts().get(day).getLow()));
+        } catch (CantFindWeatherException ex) {
+            Logger.getLogger(Display.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -253,6 +318,10 @@ public class Display extends javax.swing.JFrame {
     private MainScreen.Background background2;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel tempDisplay;
+    private javax.swing.JLabel tempDisplay1;
+    private javax.swing.JLabel tempDisplay2;
     private javax.swing.JLabel tvNews1;
     private javax.swing.JLabel tvNews2;
     private javax.swing.JLabel tvNews3;
