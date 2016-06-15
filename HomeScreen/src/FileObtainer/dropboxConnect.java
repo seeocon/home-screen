@@ -11,5 +11,5 @@ package FileObtainer;
  */
 public class dropboxConnect {
     //************IMPORTANT**************************************************
-    //*****WE ARE USING A LOCAL FILE METHOD NOW THIS IS TOO INACCESSABLE*****
+    //*****WE ARE USING A LOCAL FILE METHOD NOW THIS IS TOO INACCESSIBLE*****
 }

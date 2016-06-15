@@ -5,6 +5,8 @@
  */
 package MainScreen;
 
+import login.Interface;
+
 /**
  *
  * @author 068684570
@@ -28,11 +30,11 @@ public class Display extends javax.swing.JFrame {
     private void initComponents() {
 
         background2 = new MainScreen.Background();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(0, 0, 0));
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        setEnabled(false);
         setExtendedState(MAXIMIZED_BOTH);
         setForeground(java.awt.Color.black);
         setUndecorated(true);
@@ -41,30 +43,50 @@ public class Display extends javax.swing.JFrame {
         background2.setMinimumSize(new java.awt.Dimension(1920, 1080));
         background2.setPreferredSize(new java.awt.Dimension(1920, 1080));
 
+        jButton1.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
+        jButton1.setForeground(new java.awt.Color(255, 255, 255));
+        jButton1.setText("EDIT");
+        jButton1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
+        jButton1.setContentAreaFilled(false);
+        jButton1.setFocusPainted(false);
+        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton1MouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout background2Layout = new javax.swing.GroupLayout(background2);
         background2.setLayout(background2Layout);
         background2Layout.setHorizontalGroup(
             background2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1920, Short.MAX_VALUE)
+            .addGroup(background2Layout.createSequentialGroup()
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 1874, Short.MAX_VALUE))
         );
         background2Layout.setVerticalGroup(
             background2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1080, Short.MAX_VALUE)
+            .addGroup(background2Layout.createSequentialGroup()
+                .addComponent(jButton1)
+                .addGap(0, 1060, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(background2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(background2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(background2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(background2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
+        new Interface().setVisible(true);
+    }//GEN-LAST:event_jButton1MouseClicked
 
     /**
      * @param args the command line arguments
@@ -103,5 +125,6 @@ public class Display extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private MainScreen.Background background2;
+    private javax.swing.JButton jButton1;
     // End of variables declaration//GEN-END:variables
 }

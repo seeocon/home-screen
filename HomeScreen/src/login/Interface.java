@@ -28,10 +28,10 @@ import javax.swing.JOptionPane;
 public class Interface extends javax.swing.JFrame {
 
     // Initialization of I/O text files
-    URL resource1 = this.getClass().getResource("/LoginDatabase/Users.txt");
-    URL resource2 = this.getClass().getResource("/LoginDatabase/badpass.txt");
-    File file1 = new File(resource1.getFile()); // File of registered users
-    File file2 = new File(resource2.getFile()); // File of unusable passwords
+    URL resource1 = this.getClass().getResource("Users.txt");
+    URL resource2 = this.getClass().getResource("badpass.txt");
+    File file1 = new File("Users.txt"); // File of registered users
+    File file2 = new File("badpass.txt"); // File of unusable passwords
 
     // Initiazlization of I/O variables
     Scanner s, scanner, scanner2 = null;
@@ -172,13 +172,10 @@ public class Interface extends javax.swing.JFrame {
                             .addComponent(PWInput, javax.swing.GroupLayout.DEFAULT_SIZE, 79, Short.MAX_VALUE))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(PassWord1))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(UserName1)))
+                                    .addComponent(PassWord1)
+                                    .addComponent(UserName1))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(PWInput1, javax.swing.GroupLayout.DEFAULT_SIZE, 86, Short.MAX_VALUE)
