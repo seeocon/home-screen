@@ -3,16 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package MainLogin;
+package FileObtainer;
 
 /**
  *
  * @author 068684570
  */
-public class Operator {
-        
-    private void storeInputs(){
-        
-    }
-    
+public class dropboxConnect {
+    //************IMPORTANT**************************************************
+    //*****WE ARE USING A LOCAL FILE METHOD NOW THIS IS TOO INACCESSABLE*****
 }

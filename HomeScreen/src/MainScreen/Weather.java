@@ -35,8 +35,8 @@ public class Weather {
     Calendar c = Calendar.getInstance();                                 // Creates a calander object
     int day = c.get(Calendar.DAY_OF_WEEK);                               // gets the current day of the week
     getWeather("Toronto").getItem().getForecasts().get(day).getHigh(); // gets the high temperature for the day
-    getWeather("Toronto").getItem().getForecasts().get(day).getLow();  // gets the high temperature for the day
-    getWeather("Toronto").getItem().getForecasts().get(day).getText(); // gets the high temperature for the day
+    getWeather("Toronto").getItem().getForecasts().get(day).getLow();  // gets the low temperature for the day
+    getWeather("Toronto").getItem().getForecasts().get(day).getText(); // gets the current temperature (partly cloudy) for the day
     getWeather("Toronto").getImage()                                   // gets the image for the current temperature
     getWeather("Toronto").getItem().getCondition().getText().toLowerCase().contains("rain")  // check for rain
     getWeather("Toronto").getItem().getCondition().getText().toLowerCase().contains("cloud")  // check for cloud
