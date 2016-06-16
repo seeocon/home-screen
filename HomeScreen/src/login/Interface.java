@@ -20,6 +20,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import static login.FileChooser.*;
 
 /**
  *
@@ -310,6 +311,8 @@ public class Interface extends javax.swing.JFrame {
         } else {
             displayPopup("Login unrecognized.");
         }
+        new FileChooser().setVisible(true);
+        checkFileChooser(jFileChooser1);
         this.setVisible(false);
     }//GEN-LAST:event_jButton2ActionPerformed
 
