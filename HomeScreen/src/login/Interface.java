@@ -40,6 +40,7 @@ public class Interface extends javax.swing.JFrame {
     PrintWriter pw = null;
     User primeUser;
     String[] lineRead = null;
+    FileChooser chooser = new FileChooser();
 
     /**
      * Creates new form Interface
@@ -308,9 +309,8 @@ public class Interface extends javax.swing.JFrame {
         String user = UNInput1.getText();
         String pass = PWInput1.getText();
         if (findUser(pass, user)) {
-            new FileChooser().setVisible(true);
+            chooser.setVisible(true);
             checkFileChooser(jFileChooser1);
-            this.setVisible(false);
         } else {
             displayPopup("Login unrecognized.");
         }
@@ -319,11 +319,11 @@ public class Interface extends javax.swing.JFrame {
     public String checkFileChooser(JFileChooser j) {
         if (j.showOpenDialog(this.rootPane) == j.APPROVE_OPTION) {
             File selectedFile = jFileChooser1.getSelectedFile();
-            System.exit(0);
+            chooser.setVisible(false);
             System.out.println(selectedFile.getParent() + "/" + selectedFile.getName());
             return selectedFile.getParent() + "/" + selectedFile.getName();
         } else if (j.showOpenDialog(this.rootPane) == j.CANCEL_OPTION) {
-            System.exit(0);
+            chooser.setVisible(false);
         }
         return "DOESN'T EXIST";
     }
@@ -493,7 +493,7 @@ public class Interface extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Interface().setVisible(true);
+               Interface meme = new Interface();
             }
         });
     }

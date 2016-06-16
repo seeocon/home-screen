@@ -71,24 +71,27 @@
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="104" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="103" groupAlignment="1" attributes="0">
-                                  <Component id="tvNews3" min="-2" pref="464" max="-2" attributes="0"/>
-                                  <Component id="tvNews5" alignment="1" min="-2" pref="464" max="-2" attributes="0"/>
-                                  <Component id="tvNews4" alignment="1" min="-2" pref="464" max="-2" attributes="0"/>
-                              </Group>
-                              <Group type="102" alignment="1" attributes="0">
+                              <Group type="102" alignment="0" attributes="0">
                                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                       <Component id="jLabel1" pref="464" max="32767" attributes="0"/>
                                       <Component id="tvNews1" max="32767" attributes="0"/>
                                       <Component id="tvNews2" alignment="1" max="32767" attributes="0"/>
                                   </Group>
-                                  <EmptySpace pref="965" max="32767" attributes="0"/>
+                                  <EmptySpace max="32767" attributes="0"/>
                                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                       <Component id="jLabel2" pref="137" max="32767" attributes="0"/>
                                       <Component id="tempDisplay" max="32767" attributes="0"/>
                                       <Component id="tempDisplay1" alignment="0" max="32767" attributes="0"/>
                                       <Component id="tempDisplay2" alignment="0" max="32767" attributes="0"/>
                                   </Group>
+                              </Group>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Group type="103" groupAlignment="1" attributes="0">
+                                      <Component id="tvNews3" min="-2" pref="464" max="-2" attributes="0"/>
+                                      <Component id="tvNews5" alignment="1" min="-2" pref="464" max="-2" attributes="0"/>
+                                      <Component id="tvNews4" alignment="1" min="-2" pref="464" max="-2" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace min="0" pref="1102" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
@@ -109,6 +112,14 @@
                   </Group>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
+                          <Component id="tempDisplay1" min="-2" pref="63" max="-2" attributes="0"/>
+                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                          <Component id="tempDisplay2" min="-2" pref="63" max="-2" attributes="0"/>
+                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                          <Component id="tempDisplay" min="-2" pref="63" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="75" max="-2" attributes="0"/>
                           <Component id="tvNews1" min="-2" pref="127" max="-2" attributes="0"/>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
@@ -119,14 +130,6 @@
                           <Component id="tvNews4" min="-2" pref="127" max="-2" attributes="0"/>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Component id="tvNews5" min="-2" pref="127" max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
-                          <Component id="tempDisplay1" min="-2" pref="63" max="-2" attributes="0"/>
-                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                          <Component id="tempDisplay2" min="-2" pref="63" max="-2" attributes="0"/>
-                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                          <Component id="tempDisplay" min="-2" pref="63" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <EmptySpace pref="61" max="32767" attributes="0"/>
