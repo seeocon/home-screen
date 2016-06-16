@@ -18,6 +18,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import static login.FileChooser.*;
@@ -316,6 +317,18 @@ public class Interface extends javax.swing.JFrame {
         this.setVisible(false);
     }//GEN-LAST:event_jButton2ActionPerformed
 
+    public String checkFileChooser(JFileChooser j) {
+        if (j.showOpenDialog(this.rootPane) == j.APPROVE_OPTION) {
+            File selectedFile = jFileChooser1.getSelectedFile();
+            System.exit(0);
+            System.out.println(selectedFile.getParent() + "/" + selectedFile.getName());
+            return selectedFile.getParent() + "/" + selectedFile.getName();
+        } else if (j.showOpenDialog(this.rootPane) == j.CANCEL_OPTION) {
+            System.exit(0);
+        }
+        return "DOESN'T EXIST";
+    }
+    
     /**
      * Displays a popup text message.
      *
