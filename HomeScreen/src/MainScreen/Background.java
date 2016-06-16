@@ -6,6 +6,7 @@
 package MainScreen;
 
 import static MainScreen.Weather.getWeather;
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Toolkit;
@@ -23,13 +24,13 @@ import javax.swing.Timer;
  */
 public class Background extends javax.swing.JPanel {
 
-    URL resource1 = this.getClass().getResource("/Res/clouds.png");
+    URL resource1 = this.getClass().getResource("/Res/clouds.jpg");
     Image clouds = Toolkit.getDefaultToolkit().getImage(resource1);
     URL resource2 = this.getClass().getResource("/Res/rain.jpg");
     Image rain = Toolkit.getDefaultToolkit().getImage(resource2);
-    URL resource3 = this.getClass().getResource("/Res/sun.png");
+    URL resource3 = this.getClass().getResource("/Res/sun.jpg");
     Image sun = Toolkit.getDefaultToolkit().getImage(resource3);
-    boolean raining,cloudy,sunny;
+    public static boolean raining,cloudy,sunny;
 
     /**
      * Creates new form Background
@@ -55,6 +56,8 @@ public class Background extends javax.swing.JPanel {
     }
 
     public void paintComponent(Graphics x) {
+        x.setColor(Color.black);
+        x.fillRect(0,0,1920,1080);
         if(raining){
             x.drawImage(rain, 640*2, 0, this);
         }else if(cloudy){

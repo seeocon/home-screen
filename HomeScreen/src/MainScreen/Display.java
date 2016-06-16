@@ -6,6 +6,7 @@
 package MainScreen;
 
 import static MainScreen.Weather.getWeather;
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
@@ -38,7 +39,7 @@ public class Display extends javax.swing.JFrame {
     /**
      * Creates new form Display
      */
-    public Display(){
+    public Display() {
         initComponents();
         //TWITTER INIT
         cb.setOAuthConsumerKey("3I1RTnsA7JhWgnbomQuYrEhmP");
@@ -56,10 +57,11 @@ public class Display extends javax.swing.JFrame {
         } catch (TwitterException ex) {
             Logger.getLogger(Display.class.getName()).log(Level.SEVERE, null, ex);
         }
-        t = new Timer(100, new TimerListener());
+        t = new Timer(10000, new TimerListener());
+        t.start();
         //WEATHER INIT
         c = Calendar.getInstance();                                 // Creates a calander object
-        day = c.get(Calendar.DAY_OF_WEEK);  
+        day = c.get(Calendar.DAY_OF_WEEK);
         displayWeather();
     }
 
@@ -69,6 +71,7 @@ public class Display extends javax.swing.JFrame {
         public void actionPerformed(ActionEvent e) {
             try {
                 displayTweets();
+                displayWeather();
             } catch (TwitterException ex) {
                 Logger.getLogger(Display.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -281,8 +284,14 @@ public class Display extends javax.swing.JFrame {
                     + statuses.get(4).getText());
         }
     }
-    
-    public void displayWeather(){
+
+    public void displayWeather() {
+        if (Background.sunny) {
+            tempDisplay.setForeground(Color.BLACK);
+            tempDisplay1.setForeground(Color.BLACK);
+            tempDisplay2.setForeground(Color.BLACK);
+            jLabel2.setForeground(Color.BLACK);
+        }
         try {
             tempDisplay.setText("Current Tempurature: " + Integer.toString(Weather.getWeather("Toronto").getItem().getCondition().getTemp()));
         } catch (CantFindWeatherException ex) {
