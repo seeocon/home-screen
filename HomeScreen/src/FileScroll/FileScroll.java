@@ -11,31 +11,36 @@ import javax.swing.JPanel;
 import javax.swing.Timer;
 
 public class FileScroll {
-    
+
     Timer t = new Timer(1000, new TimerListener());
     ArrayList<File> files;
-    Image a;
+    Graphics g;
+    JPanel j;
+    int x;
+    int y;
+    int currentItem = 0;
 
-    public FileScroll(ArrayList<File> files) {
+    public FileScroll(ArrayList<File> files, Graphics g, JPanel j, int x, int y) {
         this.files = files;
+        this.g = g;
+        this.j = j;
+        this.x = x;
+        this.y = y;
         t.start();
     }
-    
-    public void drawFile(Graphics g, JPanel j, int x, int y){
-        g.drawImage(a, x, y, j);
+
+    public void draw() {
+        if (files.get(currentItem).getPath().contains(".png")) {
+            g.drawImage(Toolkit.getDefaultToolkit().getImage(files.get(currentItem).getPath()), x, y, j);
+        }
     }
-    
-    public void changeFile(int i){
-        a = Toolkit.getDefaultToolkit().getImage(files.get(i).getPath());
-    }
-    
-    private class TimerListener implements ActionListener{
-        int i = 0;
-        
+
+    private class TimerListener implements ActionListener {
+
         @Override
         public void actionPerformed(ActionEvent e) {
-            changeFile(i);
-            i++;
+            currentItem++;
+            j.repaint();
         }
     }
 }

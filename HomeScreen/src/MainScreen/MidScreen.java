@@ -7,8 +7,6 @@ package MainScreen;
 
 import FileScroll.FileScroll;
 import java.awt.Graphics;
-import java.awt.Image;
-import java.awt.Toolkit;
 import java.io.File;
 import java.util.ArrayList;
 
@@ -23,7 +21,7 @@ public class MidScreen extends javax.swing.JPanel {
      */
     
     ArrayList<File> files = new ArrayList();
-    FileScroll fs = new FileScroll(files);
+    FileScroll fs = null;
    
     public MidScreen() {
         initComponents();
@@ -32,7 +30,10 @@ public class MidScreen extends javax.swing.JPanel {
     }
     
     public void paintComponent(Graphics g){
-        fs.drawFile(g,this,0,0);
+        if (fs == null)
+            fs = new FileScroll(files, g, this, 0, 0);
+        
+        fs.draw();
     }
 
     /**
