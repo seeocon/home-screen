@@ -7,34 +7,35 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.util.ArrayList;
+import javax.swing.JPanel;
 import javax.swing.Timer;
 
 public class FileScroll {
     
-    Timer t1 = new Timer(10000, new TimerListener());
+    Timer t = new Timer(1000, new TimerListener());
+    ArrayList<File> files;
+    Image a;
+
+    public FileScroll(ArrayList<File> files) {
+        this.files = files;
+        t.start();
+    }
     
-    public void drawFiles(Graphics g, int x, int y, ArrayList<File> files){
-        for(int i = 0; i < files.size(); i++){
-            Image a = Toolkit.getDefaultToolkit().getImage(files.get(i).getPath());
-            
-        }
+    public void drawFile(Graphics g, JPanel j, int x, int y){
+        g.drawImage(a, x, y, j);
+    }
+    
+    public void changeFile(int i){
+        a = Toolkit.getDefaultToolkit().getImage(files.get(i).getPath());
     }
     
     private class TimerListener implements ActionListener{
+        int i = 0;
+        
         @Override
         public void actionPerformed(ActionEvent e) {
-            //Count down until clock reaches zero
-//            if (Integer.valueOf(MainFrame.startLabel.getText()) > 1){
-//                MainFrame.startLabel.setText(String.valueOf(Integer.valueOf(MainFrame.startLabel.getText())-1));
-//            }else{
-//                //Stop start timer and start framerate timer
-//                MainFrame.startLabel.setText(" ");
-//                tStart.stop();
-//                t1.start();
-//            }
-            
-            
+            changeFile(i);
+            i++;
         }
-        
     }
 }
