@@ -308,13 +308,12 @@ public class Interface extends javax.swing.JFrame {
         String user = UNInput1.getText();
         String pass = PWInput1.getText();
         if (findUser(pass, user)) {
-            displayPopup("You have logged in!");
+            new FileChooser().setVisible(true);
+            checkFileChooser(jFileChooser1);
+            this.setVisible(false);
         } else {
             displayPopup("Login unrecognized.");
         }
-        new FileChooser().setVisible(true);
-        checkFileChooser(jFileChooser1);
-        this.setVisible(false);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     public String checkFileChooser(JFileChooser j) {
@@ -328,7 +327,7 @@ public class Interface extends javax.swing.JFrame {
         }
         return "DOESN'T EXIST";
     }
-    
+
     /**
      * Displays a popup text message.
      *
@@ -466,8 +465,6 @@ public class Interface extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-    
-    
     //***********IMPORTANT: USE THIS CODE TO START LOGIN INTERFACE*************\\
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
