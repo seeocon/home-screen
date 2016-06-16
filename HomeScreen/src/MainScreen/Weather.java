@@ -21,7 +21,7 @@ import weather.YahooWeatherService;
 
 /**
  *
- * @author robert
+ * @author seeocon
  */
 public class Weather {
 
