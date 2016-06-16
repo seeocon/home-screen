@@ -320,10 +320,12 @@ public class Interface extends javax.swing.JFrame {
         if (j.showOpenDialog(this.rootPane) == j.APPROVE_OPTION) {
             File selectedFile = jFileChooser1.getSelectedFile();
             chooser.setVisible(false);
+            this.setVisible(false);
             System.out.println(selectedFile.getParent() + "/" + selectedFile.getName());
             return selectedFile.getParent() + "/" + selectedFile.getName();
         } else if (j.showOpenDialog(this.rootPane) == j.CANCEL_OPTION) {
             chooser.setVisible(false);
+            this.setVisible(false);
         }
         return "DOESN'T EXIST";
     }
