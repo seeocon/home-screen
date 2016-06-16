@@ -5,9 +5,17 @@
  */
 package MainScreen;
 
-
-import java.io.File;
-
+import static MainScreen.Weather.getWeather;
+import java.awt.Graphics;
+import java.awt.Image;
+import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import weather.CantFindWeatherException;
+import java.net.URL;
+import javax.swing.Timer;
 
 /**
  *
@@ -15,13 +23,45 @@ import java.io.File;
  */
 public class Background extends javax.swing.JPanel {
 
-    File b1 = new File("C:\\Users\\Paul\\Desktop\\memes\\ey.txt");
-    
+    URL resource1 = this.getClass().getResource("/Res/clouds.png");
+    Image clouds = Toolkit.getDefaultToolkit().getImage(resource1);
+    URL resource2 = this.getClass().getResource("/Res/rain.jpg");
+    Image rain = Toolkit.getDefaultToolkit().getImage(resource2);
+    URL resource3 = this.getClass().getResource("/Res/sun.png");
+    Image sun = Toolkit.getDefaultToolkit().getImage(resource3);
+    boolean raining,cloudy,sunny;
+
     /**
      * Creates new form Background
      */
     public Background() {
         initComponents();
+        Timer t = new Timer(1000, new TimerListener()); // Controls the overall mathematical simulation
+        t.start();
+    }
+
+    private class TimerListener implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            try {
+                raining = getWeather("Toronto").getItem().getCondition().getText().toLowerCase().contains("rain"); // check for rain
+                cloudy = getWeather("Toronto").getItem().getCondition().getText().toLowerCase().contains("cloud"); // check for cloud
+                sunny = getWeather("Toronto").getItem().getCondition().getText().toLowerCase().contains("sun"); // check for sun
+            } catch (CantFindWeatherException ex) {
+                Logger.getLogger(Background.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }
+
+    public void paintComponent(Graphics x) {
+        if(raining){
+            x.drawImage(rain, 640*2, 0, this);
+        }else if(cloudy){
+            x.drawImage(clouds, 640*2, 0, this);
+        }else{
+            x.drawImage(sun, 640*2, 0, this);
+        }
     }
 
     /**
