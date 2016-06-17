@@ -316,7 +316,7 @@ public class Interface extends javax.swing.JFrame {
                 Logger.getLogger(Interface.class.getName()).log(Level.SEVERE, null, ex);
             }
             pw.println(checkFileChooser(jFileChooser1));
-            buildFileList();
+            fileLocations = buildFileList();
         } else {
             displayPopup("Login unrecognized.");
         }
