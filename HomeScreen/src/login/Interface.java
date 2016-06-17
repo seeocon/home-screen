@@ -48,6 +48,7 @@ public class Interface extends javax.swing.JFrame {
     public Interface() {
         initComponents();
         initScanner();
+        fileLocations = buildFileList();
     }
 
     /**
@@ -315,7 +316,7 @@ public class Interface extends javax.swing.JFrame {
             } catch (IOException ex) {
                 Logger.getLogger(Interface.class.getName()).log(Level.SEVERE, null, ex);
             }
-            pw.println(checkFileChooser(jFileChooser1));
+            pw.println(checkFileChooser(jFileChooser1).replace("\\", "/"));
             pw.close();
             fileLocations = buildFileList();
         } else {
@@ -323,7 +324,7 @@ public class Interface extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButton2ActionPerformed
 
-    private ArrayList<File> buildFileList() {
+    public ArrayList<File> buildFileList() {
         ArrayList<File> fileList = new ArrayList<>();
         try {
             scanner = new Scanner(file3);

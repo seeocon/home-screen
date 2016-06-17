@@ -5,6 +5,7 @@
  */
 package MainScreen;
 
+import FileScroll.FileScroll;
 import static MainScreen.Weather.getWeather;
 import java.awt.Color;
 import java.awt.Graphics;
@@ -12,10 +13,12 @@ import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import weather.CantFindWeatherException;
 import java.net.URL;
+import java.util.ArrayList;
 import javax.swing.Timer;
 
 /**
@@ -24,6 +27,8 @@ import javax.swing.Timer;
  */
 public class Background extends javax.swing.JPanel {
 
+    ArrayList<File> test1 = new ArrayList<>();
+    FileScroll testScroller;
     URL resource1 = this.getClass().getResource("/Res/clouds.jpg");
     Image clouds = Toolkit.getDefaultToolkit().getImage(resource1);
     URL resource2 = this.getClass().getResource("/Res/rain.jpg");
@@ -32,7 +37,7 @@ public class Background extends javax.swing.JPanel {
     Image sun = Toolkit.getDefaultToolkit().getImage(resource3);
     URL resource4 = this.getClass().getResource("/Res/twitter.jpg");
     Image twitter = Toolkit.getDefaultToolkit().getImage(resource4);
-    public static boolean raining,cloudy,sunny;
+    public static boolean raining, cloudy, sunny;
     int refreshRate = 10000; // Rate at which the background refreshes based on the current weather (in milliseconds)
 
     /**
@@ -40,7 +45,8 @@ public class Background extends javax.swing.JPanel {
      */
     public Background() {
         initComponents();
-        Timer t = new Timer(refreshRate, new TimerListener()); // Controls the overall mathematical simulation
+        testScroller = new FileScroll(login.Interface.fileLocations, this, 0, 0);
+        Timer t = new Timer(refreshRate, new TimerListener());
         t.start();
     }
 
@@ -60,15 +66,16 @@ public class Background extends javax.swing.JPanel {
 
     public void paintComponent(Graphics x) {
         x.setColor(Color.black);
-        x.fillRect(0,0,1920,1080);
-        x.drawImage(twitter,0,0,this);
-        if(raining){
-            x.drawImage(rain, 640*2, 0, this);
-        }else if(cloudy){
-            x.drawImage(clouds, 640*2, 0, this);
-        }else{
-            x.drawImage(sun, 640*2, 0, this);
+        x.fillRect(0, 0, 1920, 1080);
+        x.drawImage(twitter, 0, 0, this);
+        if (raining) {
+            x.drawImage(rain, 640 * 2, 0, this);
+        } else if (cloudy) {
+            x.drawImage(clouds, 640 * 2, 0, this);
+        } else {
+            x.drawImage(sun, 640 * 2, 0, this);
         }
+        testScroller.draw(x);
     }
 
     /**
