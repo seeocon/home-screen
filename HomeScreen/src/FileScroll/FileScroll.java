@@ -26,8 +26,6 @@ public class FileScroll {
     Timer t = new Timer(delay, new TimerListener());
     ArrayList<File> files;
     JPanel j;
-    int x;
-    int y;
     int currentItem = 0;
 
     /**
@@ -38,11 +36,9 @@ public class FileScroll {
      * @param x The x coordinate on the jPanel to draw the content
      * @param y The y coordinate on the jPanel to draw the content
      */
-    public FileScroll(ArrayList<File> files, JPanel j, int x, int y) {
+    public FileScroll(ArrayList<File> files, JPanel j) {
         this.files = files;
         this.j = j;
-        this.x = x;
-        this.y = y;
         t.start();
     }
 
@@ -64,7 +60,7 @@ public class FileScroll {
             try {
                 Scanner s = new Scanner(files.get(currentItem));
                 g.setFont(new Font("Times New Roman", Font.BOLD, 45));
-                g.drawString(s.nextLine(), x, y);
+                g.drawString(s.nextLine(), 1920/2, 1080/2);
             } catch (IOException e) {
                 System.out.println("Error, a text file was not found");
             }

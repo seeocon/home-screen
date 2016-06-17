@@ -39,7 +39,7 @@ public class Interface extends javax.swing.JFrame {
     PrintWriter pw = null;
     User primeUser;
     String[] lineRead = null;
-    ArrayList<File> fileLocations= new ArrayList<>();
+    public static ArrayList<File> fileLocations= new ArrayList<>();
     FileChooser chooser = new FileChooser();
 
     /**
@@ -48,6 +48,11 @@ public class Interface extends javax.swing.JFrame {
     public Interface() {
         initComponents();
         initScanner();
+        try {
+                pw = new PrintWriter(new FileWriter(file3, true));
+            } catch (IOException ex) {
+                Logger.getLogger(Interface.class.getName()).log(Level.SEVERE, null, ex);
+            }
     }
 
     /**
@@ -310,11 +315,6 @@ public class Interface extends javax.swing.JFrame {
         String pass = PWInput1.getText();
         if (findUser(pass, user)) {
             chooser.setVisible(true);
-            try {
-                pw = new PrintWriter(new FileWriter(file3, true));
-            } catch (IOException ex) {
-                Logger.getLogger(Interface.class.getName()).log(Level.SEVERE, null, ex);
-            }
             pw.println(checkFileChooser(jFileChooser1));
             fileLocations = buildFileList();
         } else {

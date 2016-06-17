@@ -6,6 +6,8 @@
 package MainScreen;
 
 import static MainScreen.Weather.getWeather;
+import FileScroll.FileScroll;
+import login.Interface.*;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -60,6 +62,7 @@ public class Display extends javax.swing.JFrame {
         c = Calendar.getInstance();                                 // Creates a calander object
         day = c.get(Calendar.DAY_OF_WEEK);
         displayWeather();
+        FileScroll meme = new FileScroll(login.Interface.fileLocations,background2);
     }
 
     /**
