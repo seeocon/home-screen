@@ -48,11 +48,6 @@ public class Interface extends javax.swing.JFrame {
     public Interface() {
         initComponents();
         initScanner();
-        try {
-                pw = new PrintWriter(new FileWriter(file3, true));
-            } catch (IOException ex) {
-                Logger.getLogger(Interface.class.getName()).log(Level.SEVERE, null, ex);
-            }
     }
 
     /**
@@ -315,7 +310,13 @@ public class Interface extends javax.swing.JFrame {
         String pass = PWInput1.getText();
         if (findUser(pass, user)) {
             chooser.setVisible(true);
+            try {
+                pw = new PrintWriter(new FileWriter(file3, true));
+            } catch (IOException ex) {
+                Logger.getLogger(Interface.class.getName()).log(Level.SEVERE, null, ex);
+            }
             pw.println(checkFileChooser(jFileChooser1));
+            pw.close();
             fileLocations = buildFileList();
         } else {
             displayPopup("Login unrecognized.");

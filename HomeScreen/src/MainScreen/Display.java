@@ -37,7 +37,7 @@ public class Display extends javax.swing.JFrame {
     int day;
     Calendar c;
     Interface i = new Interface();
-    int refreshRate = 10000; // Rate at which the twitter and weather feed refreshes (in milliseconds)
+    int refreshRate = 100000; // Rate at which the twitter and weather feed refreshes (in milliseconds)
 
     /**
      * Creates new form Display
