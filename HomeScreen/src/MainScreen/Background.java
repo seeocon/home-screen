@@ -26,13 +26,13 @@ import javax.swing.Timer;
 public class Background extends javax.swing.JPanel {
 
     FileScroll testScroller;
-    URL resource1 = this.getClass().getResource("/Res/clouds.jpg");
+    URL resource1 = this.getClass().getResource("/Res/cloud.png");
     Image clouds = Toolkit.getDefaultToolkit().getImage(resource1);
-    URL resource2 = this.getClass().getResource("/Res/rain.jpg");
+    URL resource2 = this.getClass().getResource("/Res/rain.png");
     Image rain = Toolkit.getDefaultToolkit().getImage(resource2);
-    URL resource3 = this.getClass().getResource("/Res/sun.jpg");
+    URL resource3 = this.getClass().getResource("/Res/sun.png");
     Image sun = Toolkit.getDefaultToolkit().getImage(resource3);
-    URL resource4 = this.getClass().getResource("/Res/twitter.jpg");
+    URL resource4 = this.getClass().getResource("/Res/twitter.png");
     Image twitter = Toolkit.getDefaultToolkit().getImage(resource4);
     public static boolean raining, cloudy, sunny;
     int refreshRate = 600000; // Rate at which the background refreshes based on the current weather (in milliseconds)
@@ -62,19 +62,30 @@ public class Background extends javax.swing.JPanel {
         }
     }
 
+    private final int SCALE_WEATHER_SIZE = 1280;
+    
     public void paintComponent(Graphics x) {
-        x.setColor(Color.black); // Creates a black background
-        x.fillRect(0, 0, 1920, 1080);
-        x.drawImage(twitter, 0, 0, this);
+        super.paintComponent(x);
+        //x.setColor(Color.black); // Creates a black background
+       // x.fillRect(0, 0, 1920, 1080);
+        testScroller.draw(x); // Draws an image slideshow in the center of the screen
+        
+        x.drawImage(twitter, 0, 0, twitter.getWidth(this), this.getHeight(), this);
+            x.drawImage(Display.twitPic[0],Display.tvNews1.getX() - (Display.twitPic[0].getWidth(this)+10),Display.tvNews1.getY() +(Display.twitPic[0].getHeight(this)/2) -2 ,this);
+            x.drawImage(Display.twitPic[1],Display.tvNews2.getX() - (Display.twitPic[1].getWidth(this)+10),Display.tvNews2.getY() +(Display.twitPic[1].getHeight(this)/2) -2 ,this);
+            x.drawImage(Display.twitPic[2],Display.tvNews3.getX() - (Display.twitPic[2].getWidth(this)+10),Display.tvNews3.getY() +(Display.twitPic[2].getHeight(this)/2) -2 ,this);
+            x.drawImage(Display.twitPic[3],Display.tvNews4.getX() - (Display.twitPic[3].getWidth(this)+10),Display.tvNews4.getY() +(Display.twitPic[3].getHeight(this)/2) -2 ,this);
+            x.drawImage(Display.twitPic[4],Display.tvNews5.getX() - (Display.twitPic[4].getWidth(this)+10),Display.tvNews5.getY() +(Display.twitPic[4].getHeight(this)/2) -2 ,this);
+        
+        
         //Sets background image according to current weather conditions
         if (raining) {
-            x.drawImage(rain, 640 * 2, 0, this);
+            x.drawImage(rain, this.getWidth()-rain.getWidth(this), 0, rain.getWidth(this), this.getHeight(), this);
         } else if (cloudy) {
-            x.drawImage(clouds, 640 * 2, 0, this);
+            x.drawImage(clouds, this.getWidth()-rain.getWidth(this), 0, clouds.getWidth(this), this.getHeight(), this);
         } else {
-            x.drawImage(sun, 640 * 2, 0, this);
+            x.drawImage(sun, this.getWidth()-rain.getWidth(this), 0, sun.getWidth(this), this.getHeight(), this);
         }
-        testScroller.draw(x); // Draws an image slideshow in the center of the screen
     }
 
     /**

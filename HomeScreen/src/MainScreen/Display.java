@@ -7,11 +7,19 @@ package MainScreen;
 
 import static MainScreen.Weather.getWeather;
 import FileScroll.FileScroll;
+import static MainScreen.Background.cloudy;
+import static MainScreen.Background.raining;
+import static MainScreen.Background.sunny;
+import static MainScreen.Weather.getWeather;
 import login.Interface.*;
 import java.awt.Color;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
+import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -25,11 +33,12 @@ import twitter4j.TwitterFactory;
 import twitter4j.conf.ConfigurationBuilder;
 import weather.CantFindWeatherException;
 import java.util.Calendar;
+import javax.imageio.ImageIO;
+import javax.swing.JLabel;
 
 /**
  *
- * @author Paul
- * ALL UI CREATION WAS DONE BY PAUL
+ * @author Paul ALL UI CREATION WAS DONE BY PAUL
  */
 public class Display extends javax.swing.JFrame {
 
@@ -41,6 +50,8 @@ public class Display extends javax.swing.JFrame {
     Calendar c;
     Interface i = new Interface();
     int refreshRate = 600000; // Rate at which the twitter and weather feed refreshes (in milliseconds)
+
+    public static Image[] twitPic = new Image[5];
 
     /**
      * Creates new form Display
@@ -214,44 +225,39 @@ public class Display extends javax.swing.JFrame {
                 .addGroup(background2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(background2Layout.createSequentialGroup()
                         .addContainerGap()
-                        .addGroup(background2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addGroup(background2Layout.createSequentialGroup()
-                                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGroup(background2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(background2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                        .addComponent(tvNews5, javax.swing.GroupLayout.PREFERRED_SIZE, 464, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(tvNews4, javax.swing.GroupLayout.PREFERRED_SIZE, 464, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(tvNews1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 464, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(tvNews2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 464, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(tvNews3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 464, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(background2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jButton2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(background2Layout.createSequentialGroup()
                                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(494, 494, 494))))
                     .addGroup(background2Layout.createSequentialGroup()
                         .addGap(190, 190, 190)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(background2Layout.createSequentialGroup()
+                        .addGap(153, 153, 153)
+                        .addGroup(background2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(background2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(tvNews5, javax.swing.GroupLayout.PREFERRED_SIZE, 464, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(tvNews4, javax.swing.GroupLayout.PREFERRED_SIZE, 464, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(tvNews1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 464, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(tvNews2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 464, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(tvNews3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 464, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGroup(background2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(background2Layout.createSequentialGroup()
-                        .addGap(312, 312, 312)
+                        .addGap(245, 245, 245)
                         .addComponent(logo1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())
+                        .addContainerGap(847, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, background2Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 754, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(background2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(background2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, background2Layout.createSequentialGroup()
-                                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addContainerGap())
-                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, background2Layout.createSequentialGroup()
-                                    .addComponent(tempDisplay, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(345, 345, 345))
-                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, background2Layout.createSequentialGroup()
-                                    .addGroup(background2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(tempDisplay2, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(tempDisplay1, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGap(324, 324, 324)))))))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, background2Layout.createSequentialGroup()
+                                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addContainerGap())
+                            .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(tempDisplay, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, background2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(tempDisplay2, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(tempDisplay1, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE))))))
         );
         background2Layout.setVerticalGroup(
             background2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -259,20 +265,23 @@ public class Display extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(background2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(background2Layout.createSequentialGroup()
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(25, 25, 25)
-                        .addComponent(tempDisplay, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(159, 159, 159)
-                        .addComponent(tempDisplay2, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(tempDisplay1, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(background2Layout.createSequentialGroup()
                         .addComponent(jButton1)
                         .addGap(21, 21, 21)
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(tvNews1, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(tvNews1, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(background2Layout.createSequentialGroup()
+                        .addGap(7, 7, 7)
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(tempDisplay, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(background2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(background2Layout.createSequentialGroup()
+                        .addComponent(tempDisplay2, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(tempDisplay1, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(background2Layout.createSequentialGroup()
                         .addComponent(tvNews2, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(tvNews3, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -321,6 +330,30 @@ public class Display extends javax.swing.JFrame {
         displayWeather();
     }//GEN-LAST:event_jButton3MouseClicked
 
+    private JLabel returnNumber(int num) {
+        switch (num) {
+            case 0:
+                return tvNews1;
+            case 1:
+                return tvNews2;
+            case 2:
+                return tvNews3;
+            case 3:
+                return tvNews4;
+            case 4:
+                return tvNews5;
+        }
+        return tvNews1;
+    }
+
+    public void setTwitPic() throws MalformedURLException, IOException {
+        for (int i = 0; i <= 4; i++) {
+            URL url = new URL(statuses.get(i).getUser().getBiggerProfileImageURL());
+            Image image = ImageIO.read(url);
+            twitPic[i] = image;
+        }
+    }
+
     /**
      * Displays the 5 most recent tweets from the established twitter account
      * link onto their respective jLabels (in chronological order).
@@ -330,25 +363,23 @@ public class Display extends javax.swing.JFrame {
     public void displayTweets() throws TwitterException {
         System.out.println("Showing home timeline.");
 
-        // shows the first newest
-        tvNews1.setText("<html>@" + statuses.get(0).getUser().getScreenName() + ": <br>"
-                + statuses.get(0).getText() + "</html>");
-        if (statuses.size() > 1) {
-            tvNews2.setText("<html>@" + statuses.get(1).getUser().getScreenName() + ": <br>"
-                    + statuses.get(1).getText() + "</html>");
+        int currentYear = Calendar.getInstance().get(Calendar.YEAR);
+
+        try {
+            setTwitPic();
+        } catch (IOException ex) {
+            Logger.getLogger(Display.class.getName()).log(Level.SEVERE, null, ex);
         }
-        if (statuses.size() > 2) {
-            tvNews3.setText("<html>@" + statuses.get(2).getUser().getScreenName() + ": <br>"
-                    + statuses.get(2).getText() + "</html>");
+        for (Status status : statuses) {
+            if (status.getText().contains(Integer.toString(currentYear))) {
+                returnNumber(statuses.indexOf(status)).setText("Picture tweet! Check the twitter for announcements!");
+            } else {
+                returnNumber(statuses.indexOf(status)).setText("<html>@<b>" + status.getUser().getScreenName() + "</b> - <i>" + status.getUser().getName() + "</i>: <br>"
+                        + status.getText() + "</html>");
+            }
+
         }
-        if (statuses.size() > 3) {
-            tvNews4.setText("<html>@" + statuses.get(3).getUser().getScreenName() + ": <br>"
-                    + statuses.get(3).getText() + "</html>");
-        }
-        if (statuses.size() > 4) {
-            tvNews5.setText("<html>@" + statuses.get(4).getUser().getScreenName() + ": <br>"
-                    + statuses.get(4).getText() + "</html>");
-        }
+
     }
 
     /**
@@ -356,6 +387,13 @@ public class Display extends javax.swing.JFrame {
      * temperatures of the current day (displayed through jLabels).
      */
     public void displayWeather() {
+        try {
+            raining = getWeather("Toronto").getItem().getCondition().getText().toLowerCase().contains("rain"); // check for rain
+            cloudy = getWeather("Toronto").getItem().getCondition().getText().toLowerCase().contains("cloud"); // check for cloud
+            sunny = getWeather("Toronto").getItem().getCondition().getText().toLowerCase().contains("sun"); // check for sun
+        } catch (CantFindWeatherException ex) {
+            Logger.getLogger(Display.class.getName()).log(Level.SEVERE, null, ex);
+        }
         // Sets jLabel text according to current weather conditions
         if (Background.sunny) {
             jLabel2.setText("Sunny");
@@ -363,10 +401,10 @@ public class Display extends javax.swing.JFrame {
             jLabel2.setText("Cloudy");
         } else if (Background.raining) {
             jLabel2.setText("Raining");
-        } else{
+        } else {
             jLabel2.setText("Loading...");
         }
-        
+
         // Sets the jLabel text according to current temps
         try {
             tempDisplay.setText(Integer.toString(Weather.getWeather("Toronto").getItem().getCondition().getTemp()) + "°C");
@@ -431,10 +469,10 @@ public class Display extends javax.swing.JFrame {
     private javax.swing.JLabel tempDisplay;
     private javax.swing.JLabel tempDisplay1;
     private javax.swing.JLabel tempDisplay2;
-    private javax.swing.JLabel tvNews1;
-    private javax.swing.JLabel tvNews2;
-    private javax.swing.JLabel tvNews3;
-    private javax.swing.JLabel tvNews4;
-    private javax.swing.JLabel tvNews5;
+    public static javax.swing.JLabel tvNews1;
+    public static javax.swing.JLabel tvNews2;
+    public static javax.swing.JLabel tvNews3;
+    public static javax.swing.JLabel tvNews4;
+    public static javax.swing.JLabel tvNews5;
     // End of variables declaration//GEN-END:variables
 }

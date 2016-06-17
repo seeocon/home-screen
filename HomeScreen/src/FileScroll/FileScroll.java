@@ -21,7 +21,7 @@ import java.awt.Desktop;
  */
 public class FileScroll {
 
-    public static final int delay = 250;
+    public static final int delay = 5000;
 
     Timer t = new Timer(delay, new TimerListener());
     static ArrayList<File> files;
@@ -54,9 +54,7 @@ public class FileScroll {
                 Image img = Toolkit.getDefaultToolkit().getImage(files.get(currentItem).getPath());
                 //g.drawImage(img, x, y, j);
                 Graphics2D g2d = (Graphics2D) g;
-                x = (j.getWidth() - img.getWidth(null)) / 2;
-                y = (j.getHeight() - img.getHeight(null)) / 2;
-                g2d.drawImage(img, x, y, null);
+                g2d.drawImage(img,0,0,j.getWidth(),j.getHeight(), null);
             } else if (files.get(currentItem).getPath().contains(".txt")) {
                 try {
                     Scanner s = new Scanner(files.get(currentItem));

@@ -32,9 +32,9 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 public class Interface extends javax.swing.JFrame {
 
     // Initialization of I/O text files
-    File file1 = new File("Users.txt"); // File of registered users
-    File file2 = new File("badpass.txt"); // File of unusable passwords
-    File file3 = new File("files.txt"); // File of unusable passwords
+    File file1 = new File("data/Users.txt"); // File of registered users
+    File file2 = new File("data/badpass.txt"); // File of unusable passwords
+    File file3 = new File("data/files.txt"); // File of unusable passwords
 
     // Initiazlization of I/O variables
     Scanner s, scanner, scanner2 = null;
