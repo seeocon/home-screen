@@ -28,6 +28,13 @@ public class FileScroll {
     int y;
     int currentItem = 0;
 
+    /**
+     * Creates an interface that displays and scrolls through files
+     * @param files An array list of files to be drawn
+     * @param j The jPanel it will draw to
+     * @param x The x coordinate on the jPanel to draw the content
+     * @param y The y coordinate on the jPanel to draw the content
+     */
     public FileScroll(ArrayList<File> files, JPanel j, int x, int y) {
         this.files = files;
         this.j = j;
@@ -36,7 +43,12 @@ public class FileScroll {
         t.start();
     }
 
+    /**
+     * Draw method (place in paintComponent)
+     * @param g Graphics parameter passed from paintComponent
+     */
     public void draw(Graphics g) {
+        //Checking each file type and displaying them
         if (files.get(currentItem).getPath().contains(".png")) {
             g.drawImage(Toolkit.getDefaultToolkit().getImage(files.get(currentItem).getPath()), x, y, j);
         }else if(files.get(currentItem).getPath().contains(".txt")){
@@ -56,10 +68,13 @@ public class FileScroll {
         }
     }
 
+    
+    //Timer listener to move to next file
     private class TimerListener implements ActionListener {
 
         @Override
         public void actionPerformed(ActionEvent e) {
+            //Move to next file index if the final index has not been reached
             if(currentItem < files.size() - 1){
                 currentItem++;
             }else{
