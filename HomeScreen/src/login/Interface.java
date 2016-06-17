@@ -5,6 +5,7 @@
  */
 package login;
 
+import FileScroll.FileScroll;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
@@ -321,6 +322,7 @@ public class Interface extends javax.swing.JFrame {
             pw.println(checkFileChooser(jFileChooser1).replace("\\", "/"));
             pw.close();
             fileLocations = buildFileList();
+            FileScroll.files = login.Interface.fileLocations;
         } else {
             displayPopup("Login unrecognized.");
         }

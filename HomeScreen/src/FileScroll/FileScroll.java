@@ -24,7 +24,7 @@ public class FileScroll {
     public static final int delay = 5000;
 
     Timer t = new Timer(delay, new TimerListener());
-    static ArrayList<File> files;
+    public static ArrayList<File> files;
     JPanel j;
     int currentItem = 0;
     int x, y;
@@ -78,9 +78,7 @@ public class FileScroll {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            
-            FileScroll.files = login.Interface.fileLocations;
-            
+                        
             //Move to next file index if the final index has not been reached
             if (currentItem < files.size() - 1) {
                 currentItem++;

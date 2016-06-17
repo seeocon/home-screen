@@ -1,2 +1,2 @@
-H:/Documents/NetBeansProjectXD/home-screen3/HomeScreen/pic2.png
-H:/Profile/Desktop/MoonImagee.jpg
+C:/Users/Paul/Desktop/rain.jpg
+C:/Users/Paul/Desktop/sun.jpg

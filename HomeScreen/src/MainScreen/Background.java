@@ -25,7 +25,7 @@ import javax.swing.Timer;
  */
 public class Background extends javax.swing.JPanel {
 
-    FileScroll testScroller;
+    public FileScroll testScroller;
     URL resource1 = this.getClass().getResource("/Res/cloud.png");
     Image clouds = Toolkit.getDefaultToolkit().getImage(resource1);
     URL resource2 = this.getClass().getResource("/Res/rain.png");
@@ -65,9 +65,9 @@ public class Background extends javax.swing.JPanel {
     private final int SCALE_WEATHER_SIZE = 1280;
     
     public void paintComponent(Graphics x) {
-        super.paintComponent(x);
-        //x.setColor(Color.black); // Creates a black background
-       // x.fillRect(0, 0, 1920, 1080);
+
+        x.setColor(Color.BLACK);
+        x.fillRect(0, 0, 1920, 1080);
         testScroller.draw(x); // Draws an image slideshow in the center of the screen
         
         x.drawImage(twitter, 0, 0, twitter.getWidth(this), this.getHeight(), this);
