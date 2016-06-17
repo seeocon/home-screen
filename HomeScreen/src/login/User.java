@@ -7,7 +7,7 @@ package login;
 
 /**
  *
- * @author 068684570
+ * @author Paul
  */
 public class User {
 

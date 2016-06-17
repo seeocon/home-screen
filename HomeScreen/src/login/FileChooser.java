@@ -4,11 +4,6 @@ package login;
 import java.io.File;
 import javax.swing.JFileChooser;
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 /**
  *
  * @author seeocon
@@ -22,6 +17,7 @@ public class FileChooser extends javax.swing.JFrame {
         initComponents();
     }
 
+    //SEE login.Interface for implementation
     public String checkFileChooser(JFileChooser j) {
         if (j.showOpenDialog(this.rootPane) == j.APPROVE_OPTION) {
             File selectedFile = jFileChooser1.getSelectedFile();

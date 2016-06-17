@@ -28,7 +28,8 @@ import java.util.Calendar;
 
 /**
  *
- * @author 068684570
+ * @author Paul
+ * ALL UI CREATION WAS DONE BY PAUL
  */
 public class Display extends javax.swing.JFrame {
 

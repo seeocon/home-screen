@@ -11,6 +11,7 @@ import java.util.ArrayList;
 /**
  *
  * @author Paul
+ * CURRENTLY NOT BEING USED, ALTHOUGH MAY BE USEFUL IN THE FUTURE
  */
 public class fileObtainer {
     

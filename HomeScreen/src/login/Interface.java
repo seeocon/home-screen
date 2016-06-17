@@ -25,7 +25,8 @@ import static login.FileChooser.*;
 
 /**
  *
- * @author 068684570
+ * @author 068684570 LOGIN INTERFACE DONE BY PAUL, FILE CHOOSER DONE BY MICHAEL,
+ * IMPLEMENTED BY PAUL
  */
 public class Interface extends javax.swing.JFrame {
 
@@ -39,7 +40,7 @@ public class Interface extends javax.swing.JFrame {
     PrintWriter pw = null;
     User primeUser;
     String[] lineRead = null;
-    public static ArrayList<File> fileLocations= new ArrayList<>();
+    public static ArrayList<File> fileLocations = new ArrayList<>();
     FileChooser chooser = new FileChooser();
 
     /**
@@ -324,6 +325,11 @@ public class Interface extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButton2ActionPerformed
 
+    /**
+     * Checks the text file which stores the absolute paths of all images used
+     * and creates/returns a ArrayList<File> of all such paths.
+     * @return The ArrayList<File> containing all absolute image paths.
+     */
     public ArrayList<File> buildFileList() {
         ArrayList<File> fileList = new ArrayList<>();
         try {
@@ -338,13 +344,17 @@ public class Interface extends javax.swing.JFrame {
         return fileList;
     }
 
-    
+    /**
+     * Checks the file chooser's selection and returns an absolute path to the
+     * file as a String. Code done by Michael.
+     * @param j The JFileChooser to be used.
+     * @return The absolute path to the file.
+     */
     public String checkFileChooser(JFileChooser j) {
         if (j.showOpenDialog(this.rootPane) == j.APPROVE_OPTION) {
             File selectedFile = jFileChooser1.getSelectedFile();
             chooser.setVisible(false);
             this.setVisible(false);
-            System.out.println(selectedFile.getParent() + "/" + selectedFile.getName());
             return selectedFile.getParent() + "/" + selectedFile.getName();
         } else if (j.showOpenDialog(this.rootPane) == j.CANCEL_OPTION) {
             chooser.setVisible(false);
@@ -487,41 +497,16 @@ public class Interface extends javax.swing.JFrame {
         }
     }
 
-    /**
-     * @param args the command line arguments
-     */
     //***********IMPORTANT: USE THIS CODE TO START LOGIN INTERFACE*************\\
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Interface.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Interface.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Interface.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Interface.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
 
-        /* Create and display the form */
+    /*
+    public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-               Interface meme = new Interface();
+                Interface meme = new Interface();
             }
         });
-    }
+    }*/
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField FNInput;
