@@ -13,12 +13,10 @@ import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.File;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import weather.CantFindWeatherException;
 import java.net.URL;
-import java.util.ArrayList;
 import javax.swing.Timer;
 
 /**
@@ -27,7 +25,6 @@ import javax.swing.Timer;
  */
 public class Background extends javax.swing.JPanel {
 
-    ArrayList<File> test1 = new ArrayList<>();
     FileScroll testScroller;
     URL resource1 = this.getClass().getResource("/Res/clouds.jpg");
     Image clouds = Toolkit.getDefaultToolkit().getImage(resource1);
@@ -50,6 +47,7 @@ public class Background extends javax.swing.JPanel {
         t.start();
     }
 
+    //Acquires the current weather conditions on set intervals
     private class TimerListener implements ActionListener {
 
         @Override
@@ -65,9 +63,10 @@ public class Background extends javax.swing.JPanel {
     }
 
     public void paintComponent(Graphics x) {
-        x.setColor(Color.black);
+        x.setColor(Color.black); // Creates a black background
         x.fillRect(0, 0, 1920, 1080);
         x.drawImage(twitter, 0, 0, this);
+        //Sets background image according to current weather conditions
         if (raining) {
             x.drawImage(rain, 640 * 2, 0, this);
         } else if (cloudy) {
@@ -75,7 +74,7 @@ public class Background extends javax.swing.JPanel {
         } else {
             x.drawImage(sun, 640 * 2, 0, this);
         }
-        testScroller.draw(x);
+        testScroller.draw(x); // Draws an image slideshow in the center of the screen
     }
 
     /**

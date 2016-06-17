@@ -293,6 +293,12 @@ public class Display extends javax.swing.JFrame {
         System.exit(1);
     }//GEN-LAST:event_jButton2MouseClicked
 
+    /**
+     * Displays the 5 most recent tweets from the established twitter account
+     * link onto their respective jLabels (in chronological order).
+     *
+     * @throws TwitterException
+     */
     public void displayTweets() throws TwitterException {
         System.out.println("Showing home timeline.");
 
@@ -317,26 +323,33 @@ public class Display extends javax.swing.JFrame {
         }
     }
 
+    /**
+     * Displays the current temperature, weather conditions and high/low
+     * temperatures of the current day (displayed through jLabels).
+     */
     public void displayWeather() {
+        // Sets jLabel text according to current weather conditions
         if (Background.sunny) {
             jLabel2.setText("Sunny");
-        }else if(Background.cloudy){
+        } else if (Background.cloudy) {
             jLabel2.setText("Cloudy");
-        }else{
+        } else {
             jLabel2.setText("Raining");
         }
+        
+        // Sets the jLabel text according to current temps
         try {
-            tempDisplay.setText(Integer.toString(Weather.getWeather("Toronto").getItem().getCondition().getTemp())+ "°C");
+            tempDisplay.setText(Integer.toString(Weather.getWeather("Toronto").getItem().getCondition().getTemp()) + "°C");
         } catch (CantFindWeatherException ex) {
             Logger.getLogger(Display.class.getName()).log(Level.SEVERE, null, ex);
         }
         try {
-            tempDisplay1.setText("High: " + Integer.toString(getWeather("Toronto").getItem().getForecasts().get(day).getHigh())+ "°C");
+            tempDisplay1.setText("Today's High: " + Integer.toString(getWeather("Toronto").getItem().getForecasts().get(day).getHigh()) + "°C");
         } catch (CantFindWeatherException ex) {
             Logger.getLogger(Display.class.getName()).log(Level.SEVERE, null, ex);
         }
         try {
-            tempDisplay2.setText("Low: " + Integer.toString(getWeather("Toronto").getItem().getForecasts().get(day).getLow())+ "°C");
+            tempDisplay2.setText("Today's Low: " + Integer.toString(getWeather("Toronto").getItem().getForecasts().get(day).getLow()) + "°C");
         } catch (CantFindWeatherException ex) {
             Logger.getLogger(Display.class.getName()).log(Level.SEVERE, null, ex);
         }
