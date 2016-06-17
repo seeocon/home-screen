@@ -35,7 +35,7 @@ public class Background extends javax.swing.JPanel {
     URL resource4 = this.getClass().getResource("/Res/twitter.jpg");
     Image twitter = Toolkit.getDefaultToolkit().getImage(resource4);
     public static boolean raining, cloudy, sunny;
-    int refreshRate = 10000; // Rate at which the background refreshes based on the current weather (in milliseconds)
+    int refreshRate = 600000; // Rate at which the background refreshes based on the current weather (in milliseconds)
 
     /**
      * Creates new form Background
