@@ -40,7 +40,7 @@ public class Interface extends javax.swing.JFrame {
     PrintWriter pw = null;
     User primeUser;
     String[] lineRead = null;
-    ArrayList<String> fileLocations= new ArrayList<>();
+    ArrayList<File> fileLocations= new ArrayList<>();
     FileChooser chooser = new FileChooser();
 
     /**
@@ -311,7 +311,7 @@ public class Interface extends javax.swing.JFrame {
         String pass = PWInput1.getText();
         if (findUser(pass, user)) {
             chooser.setVisible(true);
-            fileLocations.add(checkFileChooser(jFileChooser1));
+            fileLocations.add(new File(checkFileChooser(jFileChooser1)));
         } else {
             displayPopup("Login unrecognized.");
         }
