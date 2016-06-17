@@ -13,6 +13,9 @@ import java.net.URL;
 /**
  *
  * @author Paul
+ * 
+ * THIS JPANEL HOLDS EXCLUSIVELY THE NHS LOGO SO IT CAN BE MANIPULATED EASILY VIA
+ * THE SWING NETBEANS INTERFACE
  */
 public class Logo extends javax.swing.JPanel {
     
