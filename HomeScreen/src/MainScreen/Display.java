@@ -50,10 +50,6 @@ public class Display extends javax.swing.JFrame {
         twitter = new TwitterFactory(cb.build()).getInstance();
         try {
             statuses = twitter.getHomeTimeline();
-        } catch (TwitterException ex) {
-            Logger.getLogger(Display.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        try {
             displayTweets();
         } catch (TwitterException ex) {
             Logger.getLogger(Display.class.getName()).log(Level.SEVERE, null, ex);
