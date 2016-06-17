@@ -30,10 +30,9 @@ import static login.FileChooser.*;
 public class Interface extends javax.swing.JFrame {
 
     // Initialization of I/O text files
-    URL resource1 = this.getClass().getResource("Users.txt");
-    URL resource2 = this.getClass().getResource("badpass.txt");
     File file1 = new File("Users.txt"); // File of registered users
     File file2 = new File("badpass.txt"); // File of unusable passwords
+    File file3 = new File("files.txt"); // File of unusable passwords
 
     // Initiazlization of I/O variables
     Scanner s, scanner, scanner2 = null;
@@ -311,12 +310,33 @@ public class Interface extends javax.swing.JFrame {
         String pass = PWInput1.getText();
         if (findUser(pass, user)) {
             chooser.setVisible(true);
-            fileLocations.add(new File(checkFileChooser(jFileChooser1)));
+            try {
+                pw = new PrintWriter(new FileWriter(file3, true));
+            } catch (IOException ex) {
+                Logger.getLogger(Interface.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            pw.println(checkFileChooser(jFileChooser1));
+            buildFileList();
         } else {
             displayPopup("Login unrecognized.");
         }
     }//GEN-LAST:event_jButton2ActionPerformed
 
+    private ArrayList<File> buildFileList() {
+        ArrayList<File> fileList = new ArrayList<>();
+        try {
+            scanner = new Scanner(file3);
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(Interface.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        while (scanner.hasNextLine()) {
+            String lineFromFile = scanner.nextLine();
+            fileList.add(new File(lineFromFile));
+        }
+        return fileList;
+    }
+
+    
     public String checkFileChooser(JFileChooser j) {
         if (j.showOpenDialog(this.rootPane) == j.APPROVE_OPTION) {
             File selectedFile = jFileChooser1.getSelectedFile();
