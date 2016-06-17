@@ -16,6 +16,7 @@ public class FileChooser extends javax.swing.JFrame {
      */
     public FileChooser() {
         initComponents();
+        // Limits the files available to choose to only valid file types
         FileNameExtensionFilter filter = new FileNameExtensionFilter("jpg", "png", "mp4", "jpeg", "txt");
         jFileChooser1.setFileFilter(filter);
     }
