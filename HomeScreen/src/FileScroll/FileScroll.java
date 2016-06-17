@@ -33,8 +33,6 @@ public class FileScroll {
      *
      * @param files An array list of files to be drawn
      * @param j The jPanel it will draw to
-     * @param x The x coordinate on the jPanel to draw the content
-     * @param y The y coordinate on the jPanel to draw the content
      */
     public FileScroll(ArrayList<File> files, JPanel j) {
         this.files = files;
@@ -44,7 +42,6 @@ public class FileScroll {
 
     /**
      * Draw method (place in paintComponent)
-     *
      * @param g Graphics parameter passed from paintComponent
      */
     public void draw(Graphics g) {
