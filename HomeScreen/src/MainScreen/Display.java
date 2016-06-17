@@ -35,6 +35,7 @@ public class Display extends javax.swing.JFrame {
     int day;
     Calendar c;
     Interface i = new Interface();
+    int refreshRate = 10000; // Rate at which the twitter and weather feed refreshes (in milliseconds)
 
     /**
      * Creates new form Display
@@ -57,7 +58,7 @@ public class Display extends javax.swing.JFrame {
         } catch (TwitterException ex) {
             Logger.getLogger(Display.class.getName()).log(Level.SEVERE, null, ex);
         }
-        t = new Timer(10000, new TimerListener());
+        t = new Timer(refreshRate, new TimerListener());
         t.start();
         //WEATHER INIT
         c = Calendar.getInstance();                                 // Creates a calander object
@@ -65,6 +66,9 @@ public class Display extends javax.swing.JFrame {
         displayWeather();
     }
 
+    /**
+     * REFRESHES THE TWITTER AND WEATHER FEED
+     */
     private class TimerListener implements ActionListener {
 
         @Override

@@ -33,13 +33,14 @@ public class Background extends javax.swing.JPanel {
     URL resource4 = this.getClass().getResource("/Res/twitter.jpg");
     Image twitter = Toolkit.getDefaultToolkit().getImage(resource4);
     public static boolean raining,cloudy,sunny;
+    int refreshRate = 1000; // Rate at which the background refreshes based on the current weather (in milliseconds)
 
     /**
      * Creates new form Background
      */
     public Background() {
         initComponents();
-        Timer t = new Timer(1000, new TimerListener()); // Controls the overall mathematical simulation
+        Timer t = new Timer(refreshRate, new TimerListener()); // Controls the overall mathematical simulation
         t.start();
     }
 
