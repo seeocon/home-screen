@@ -30,6 +30,8 @@ public class Background extends javax.swing.JPanel {
     Image rain = Toolkit.getDefaultToolkit().getImage(resource2);
     URL resource3 = this.getClass().getResource("/Res/sun.jpg");
     Image sun = Toolkit.getDefaultToolkit().getImage(resource3);
+    URL resource4 = this.getClass().getResource("/Res/twitter.jpg");
+    Image twitter = Toolkit.getDefaultToolkit().getImage(resource4);
     public static boolean raining,cloudy,sunny;
 
     /**
@@ -58,6 +60,7 @@ public class Background extends javax.swing.JPanel {
     public void paintComponent(Graphics x) {
         x.setColor(Color.black);
         x.fillRect(0,0,1920,1080);
+        x.drawImage(twitter,0,0,this);
         if(raining){
             x.drawImage(rain, 640*2, 0, this);
         }else if(cloudy){
