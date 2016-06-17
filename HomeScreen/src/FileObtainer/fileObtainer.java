@@ -13,39 +13,43 @@ import java.util.ArrayList;
  * @author Paul
  */
 public class fileObtainer {
-
-    static final String rootDirectory = "C:\\Users\\Paul\\Desktop\\memes\\"; // THIS IS THE ROOT DIRECTORY ON THE RASPBERRY PIE TO WHICH ALL FILES WILL BE SAVED. THIS IS AN EXAMPLE.
+    
+    // OBTAINS ALL THE FILES IN A GIVEN DIRECTORY
+    // NOT CURRENTLY USED, CHECK login.interface FOR (ArrayList<File> fileDirectories)
+    // static final String rootDirectory = "C:\\Users\\Paul\\Desktop\\memes\\"; THIS IS THE ROOT DIRECTORY ON THE RASPBERRY PIE TO WHICH ALL FILES WILL BE SAVED. THIS IS AN EXAMPLE.
 
     static ArrayList<File> picFileList = new ArrayList<>();
     static ArrayList<File> vidFileList = new ArrayList<>();
-    
-    static ArrayList<String> picNameList = new ArrayList<>();
-    static ArrayList<String> vidNameList = new ArrayList<>();
-
-    public void createNames(final File folder) {
-        for (final File fileEntry : folder.listFiles()) {
-            if (fileEntry.isDirectory()) {
-                createNames(fileEntry);
-            } else if (fileEntry.getName().contains(".avi")) {
-                vidNameList.add(fileEntry.getName());
+   
+    /**
+     * Separates an arraylist of assorted files into ArrayList<File> of varying file types
+     * @param files The ArrayList to be sorted.
+     */
+    public void sortFiles(ArrayList<File> files) {
+        for (File fileEntry : files) {
+            if (fileEntry.getName().contains(".avi")) { //IMPORTANT: CHANGE TO OTHER FILE FORMAT IF NEED BE
+                vidFileList.add(fileEntry);
             } else {
-                picNameList.add(fileEntry.getName());
+                picFileList.add(fileEntry);
             }
         }
     }
-    
-    public ArrayList<File> getVidFiles(){
-       for(int i = 0; i < vidNameList.size(); i++){
-            vidFileList.add(new File(rootDirectory + vidNameList.get(i)));
-        }
-        return vidFileList; 
-    }
-    
-    public ArrayList<File> getPicFiles(){
-        for(int i = 0; i < picNameList.size(); i++){
-            picFileList.add(new File(rootDirectory + picNameList.get(i)));
-        }
+
+    /**
+     * Returns the picture ArrayList.
+     * @return The picture ArrayList
+     */
+    public static ArrayList<File> getPicFileList() {
         return picFileList;
     }
 
+    /**
+     * Returns the video ArrayList.
+     * @return The video ArrayList
+     */
+    public static ArrayList<File> getVidFileList() {
+        return vidFileList;
+    }
+    
+    
 }

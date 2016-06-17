@@ -18,6 +18,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import static login.FileChooser.*;
@@ -39,6 +40,8 @@ public class Interface extends javax.swing.JFrame {
     PrintWriter pw = null;
     User primeUser;
     String[] lineRead = null;
+    ArrayList<File> fileLocations= new ArrayList<>();
+    FileChooser chooser = new FileChooser();
 
     /**
      * Creates new form Interface
@@ -307,14 +310,26 @@ public class Interface extends javax.swing.JFrame {
         String user = UNInput1.getText();
         String pass = PWInput1.getText();
         if (findUser(pass, user)) {
-            displayPopup("You have logged in!");
+            chooser.setVisible(true);
+            fileLocations.add(new File(checkFileChooser(jFileChooser1)));
         } else {
             displayPopup("Login unrecognized.");
         }
-        new FileChooser().setVisible(true);
-        checkFileChooser(jFileChooser1);
-        this.setVisible(false);
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    public String checkFileChooser(JFileChooser j) {
+        if (j.showOpenDialog(this.rootPane) == j.APPROVE_OPTION) {
+            File selectedFile = jFileChooser1.getSelectedFile();
+            chooser.setVisible(false);
+            this.setVisible(false);
+            System.out.println(selectedFile.getParent() + "/" + selectedFile.getName());
+            return selectedFile.getParent() + "/" + selectedFile.getName();
+        } else if (j.showOpenDialog(this.rootPane) == j.CANCEL_OPTION) {
+            chooser.setVisible(false);
+            this.setVisible(false);
+        }
+        return "DOESN'T EXIST";
+    }
 
     /**
      * Displays a popup text message.
@@ -453,8 +468,6 @@ public class Interface extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-    
-    
     //***********IMPORTANT: USE THIS CODE TO START LOGIN INTERFACE*************\\
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -483,7 +496,7 @@ public class Interface extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Interface().setVisible(true);
+               Interface meme = new Interface();
             }
         });
     }

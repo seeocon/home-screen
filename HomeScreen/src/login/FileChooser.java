@@ -20,7 +20,6 @@ public class FileChooser extends javax.swing.JFrame {
      */
     public FileChooser() {
         initComponents();
-        checkFileChooser(jFileChooser1);
     }
 
     public String checkFileChooser(JFileChooser j) {
