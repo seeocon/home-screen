@@ -81,22 +81,13 @@
                               <Component id="tvNews2" alignment="1" min="-2" pref="464" max="-2" attributes="0"/>
                               <Component id="tvNews3" alignment="1" min="-2" pref="464" max="-2" attributes="0"/>
                           </Group>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="102" attributes="0">
-                                  <EmptySpace min="-2" pref="312" max="-2" attributes="0"/>
-                                  <Component id="logo2" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace min="0" pref="841" max="32767" attributes="0"/>
-                              </Group>
-                              <Group type="102" alignment="1" attributes="0">
-                                  <EmptySpace max="32767" attributes="0"/>
-                                  <Group type="103" groupAlignment="1" attributes="0">
-                                      <Component id="tempDisplay2" min="-2" pref="271" max="-2" attributes="0"/>
-                                      <Component id="tempDisplay" min="-2" pref="271" max="-2" attributes="0"/>
-                                      <Component id="tempDisplay1" alignment="1" min="-2" pref="271" max="-2" attributes="0"/>
-                                  </Group>
-                                  <EmptySpace min="-2" pref="110" max="-2" attributes="0"/>
-                              </Group>
+                          <EmptySpace pref="971" max="32767" attributes="0"/>
+                          <Group type="103" groupAlignment="1" attributes="0">
+                              <Component id="tempDisplay2" min="-2" pref="271" max="-2" attributes="0"/>
+                              <Component id="tempDisplay" min="-2" pref="271" max="-2" attributes="0"/>
+                              <Component id="tempDisplay1" alignment="1" min="-2" pref="271" max="-2" attributes="0"/>
                           </Group>
+                          <EmptySpace min="-2" pref="110" max="-2" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
@@ -121,15 +112,10 @@
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="tvNews3" min="-2" pref="127" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" attributes="0">
-                          <Component id="tvNews4" min="-2" pref="127" max="-2" attributes="0"/>
-                          <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Component id="tvNews5" min="-2" pref="127" max="-2" attributes="0"/>
-                      </Group>
-                      <Component id="logo2" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace pref="90" max="32767" attributes="0"/>
+                  <Component id="tvNews4" min="-2" pref="127" max="-2" attributes="0"/>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Component id="tvNews5" min="-2" pref="127" max="-2" attributes="0"/>
+                  <EmptySpace pref="92" max="32767" attributes="0"/>
               </Group>
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="101" max="-2" attributes="0"/>
@@ -279,21 +265,6 @@
             <Property name="text" type="java.lang.String" value="temp"/>
           </Properties>
         </Component>
-        <Container class="MainScreen.Logo" name="logo2">
-
-          <Layout>
-            <DimensionLayout dim="0">
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <EmptySpace min="0" pref="199" max="32767" attributes="0"/>
-              </Group>
-            </DimensionLayout>
-            <DimensionLayout dim="1">
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <EmptySpace min="0" pref="272" max="32767" attributes="0"/>
-              </Group>
-            </DimensionLayout>
-          </Layout>
-        </Container>
       </SubComponents>
     </Container>
   </SubComponents>

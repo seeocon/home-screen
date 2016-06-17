@@ -5,11 +5,7 @@
  */
 package MainScreen;
 
-import FileScroll.FileScroll;
-import java.awt.BorderLayout;
 import java.awt.Graphics;
-import java.io.File;
-import java.util.ArrayList;
 
 
 /**
@@ -21,23 +17,14 @@ public class MidScreen extends javax.swing.JPanel {
     /**
      * Creates new form MidScreen
      */
-    ArrayList<File> files = new ArrayList();
-    FileScroll fs = null;
 
     public MidScreen() {
         initComponents();
-        files.add(new File("pic.png"));
-        files.add(new File("pic2.png"));
-        files.add(new File("text.txt"));
     }
 
     @Override
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
-        if (fs == null) {
-            fs = new FileScroll(files, this, 100, 100);
-        }
-        fs.draw(g);
     }
 
     /**

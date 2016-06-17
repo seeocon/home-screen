@@ -11,17 +11,18 @@ import java.util.ArrayList;
 import java.util.Scanner;
 import javax.swing.JPanel;
 import javax.swing.Timer;
-
-import com.xuggle.xuggler.*;
 import java.awt.Desktop;
 
+/**
+ * 
+ * @author Emanuel Vellios
+ */
 public class FileScroll {
 
-    public static final int delay = 1000;
+    public static final int delay = 25000;
     
     Timer t = new Timer(delay, new TimerListener());
     ArrayList<File> files;
-    //Graphics g;
     JPanel j;
     int x;
     int y;
@@ -36,7 +37,6 @@ public class FileScroll {
     }
 
     public void draw(Graphics g) {
-        g.drawRect(0, 0, 0, 0);
         if (files.get(currentItem).getPath().contains(".png")) {
             g.drawImage(Toolkit.getDefaultToolkit().getImage(files.get(currentItem).getPath()), x, y, j);
         }else if(files.get(currentItem).getPath().contains(".txt")){
@@ -44,14 +44,16 @@ public class FileScroll {
                 Scanner s = new Scanner(files.get(currentItem));
                 g.setFont(new Font("Times New Roman", Font.BOLD, 45));
                 g.drawString(s.nextLine(), x, y);
-                //Desktop.getDesktop().open(new File("video.mp4"));
             }catch(IOException e){
                 System.out.println("Error, a text file was not found");
             }
+        }else if(files.get(currentItem).getPath().contains(".mp4")){
+            try{
+                Desktop.getDesktop().open(new File(files.get(currentItem).getPath()));
+            }catch(IOException e){
+                System.out.println("Error, a video file was not found");
+            }
         }
-        
-        
-        
     }
 
     private class TimerListener implements ActionListener {
