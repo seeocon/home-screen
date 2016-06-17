@@ -3,6 +3,7 @@ package login;
 
 import java.io.File;
 import javax.swing.JFileChooser;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 /**
  *
@@ -15,6 +16,8 @@ public class FileChooser extends javax.swing.JFrame {
      */
     public FileChooser() {
         initComponents();
+        FileNameExtensionFilter filter = new FileNameExtensionFilter("jpg", "png", "mp4", "jpeg", "txt");
+        jFileChooser1.setFileFilter(filter);
     }
 
     //SEE login.Interface for implementation

@@ -50,7 +50,7 @@ public class FileScroll {
     public void draw(Graphics g) {
         //Checking each file type and displaying them
         if (files.size() > 0) {
-            if (files.get(currentItem).getPath().contains(".png") || files.get(currentItem).getPath().contains(".jpg")) {
+            if (files.get(currentItem).getPath().contains(".png") || files.get(currentItem).getPath().contains(".jpg") || files.get(currentItem).getPath().contains(".jpeg")) {
                 Image img = Toolkit.getDefaultToolkit().getImage(files.get(currentItem).getPath());
                 //g.drawImage(img, x, y, j);
                 Graphics2D g2d = (Graphics2D) g;

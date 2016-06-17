@@ -18,10 +18,11 @@ import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import static login.FileChooser.*;
+import javax.swing.JFileChooser;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 /**
  *
@@ -328,6 +329,7 @@ public class Interface extends javax.swing.JFrame {
     /**
      * Checks the text file which stores the absolute paths of all images used
      * and creates/returns a ArrayList<File> of all such paths.
+     *
      * @return The ArrayList<File> containing all absolute image paths.
      */
     public ArrayList<File> buildFileList() {
@@ -347,6 +349,7 @@ public class Interface extends javax.swing.JFrame {
     /**
      * Checks the file chooser's selection and returns an absolute path to the
      * file as a String. Code done by Michael.
+     *
      * @param j The JFileChooser to be used.
      * @return The absolute path to the file.
      */
